@@ -1,0 +1,16 @@
+const mongoose = require('mongoose');
+
+const staffSchema = new mongoose.Schema({
+  hotelId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Hotel'
+  },
+  name: String,
+  role: {
+    type: String,
+    enum: ['Manager', 'Receptionist', 'Housekeeping']
+  },
+  salary: Number
+});
+
+module.exports = mongoose.model('Staff', staffSchema);

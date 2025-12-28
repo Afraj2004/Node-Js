@@ -1,0 +1,33 @@
+const mongoose = require('mongoose');
+
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: { type: String, unique: true },
+  role: {
+    type: String,
+    enum: ['guest', 'admin'],
+    default: 'guest'
+  },
+  hotel: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Hotel',
+    default: null,
+    validate: {
+      validator: function (value) {
+        const role = this.get('role');
+        if (role === 'admin') {
+          return value != null;
+        }
+        return value === null;
+      },
+      message: function () {
+        const role = this.get('role');
+        return role === 'admin'
+          ? 'Admin must be assigned to a hotel'
+          : 'Guest should not be assigned to a hotel';
+      }
+    }
+  }
+});
+
+module.exports = mongoose.model('User', userSchema);

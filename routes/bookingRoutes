@@ -1,0 +1,28 @@
+const express = require('express');
+const router = express.Router();
+const Booking = require('../models/Booking');
+
+// CREATE Booking
+router.post('/', async (req, res) => {
+  try {
+    const booking = new Booking(req.body);
+    await booking.save();
+    res.status(201).json(booking);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET Bookings
+router.get('/', async (req, res) => {
+  try {
+    const bookings = await Booking.find()
+      .populate('user', 'name email')
+      .populate('hotel', 'name location')
+      .populate('room', 'roomNumber type price');
+    res.json(bookings);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+module.exports = router;

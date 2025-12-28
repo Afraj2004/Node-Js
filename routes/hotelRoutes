@@ -1,0 +1,27 @@
+const express = require('express');
+const router = express.Router();
+const Hotel = require('../models/Hotel');
+
+// CREATE Hotel
+router.post('/', async (req, res) => {
+  try {
+    const hotel = new Hotel(req.body);
+    await hotel.save();
+    console.log("Hotel saved:", hotel);
+    res.status(201).json(hotel);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET all Hotels
+router.get('/', async (req, res) => {
+  try {
+    const hotels = await Hotel.find();
+    res.json(hotels);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+module.exports = router;

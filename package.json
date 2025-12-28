@@ -1,0 +1,29 @@
+{
+  "name": "node_tutor",
+  "version": "1.0.0",
+  "description": "node js tutorial",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Afraj2004/Node-Js.git"
+  },
+  "keywords": [
+    "Learn"
+  ],
+  "author": "A.K",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Afraj2004/Node-Js/issues"
+  },
+  "homepage": "https://github.com/Afraj2004/Node-Js#readme",
+  "dependencies": {
+    "body-parser": "^2.2.1",
+    "express": "^5.2.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^9.0.2",
+    "nodemon": "^3.1.11"
+  }
+}
