@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
+require('dotenv').config();
 app.use(express.json());
+const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
   res.send('Welcome to the Hotel. Please view the menu!');
@@ -25,7 +27,8 @@ const paymentRoutes = require('./routes/paymentRoutes');
 app.use('/payments', paymentRoutes);
 
 
-
-app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000');
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+// Exporting app for testing purposes
